@@ -4,7 +4,6 @@ const parseString = require('xml2js').parseString;
 const request = require('request');
 
 
-
 let bot = new Bot({
   token: process.env.TOKEN,
   verify: process.env.VERIFY,
