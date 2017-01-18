@@ -149,7 +149,7 @@ bot.on('message', (payload, reply) => {
       break;
       case 4://Atendimento concluido
         disk[payload.sender.id].step = -1
-        reply({ text: message }, (err) => {
+        reply({ text: `Qualquer dúvida você pode nos consultar também pelo twitter @feedcast_ \n\n ${botSign}` }, (err) => {
           if (err) console.log(err)
         });
       break;
