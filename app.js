@@ -56,7 +56,7 @@ bot.on('message', (payload, reply) => {
 
 
   bot.getProfile(payload.sender.id, (err, profile) => {
-    if (err) throw err
+    if (err) console.log(err)
 
     if("undefined" === typeof disk[payload.sender.id]){
       disk[payload.sender.id] = {
@@ -79,8 +79,7 @@ bot.on('message', (payload, reply) => {
         message = `Olá ${profile.first_name}! Você deseja enviar um feed para nosso catalogo? \n\n ${botSign}`;
         disk[payload.sender.id].step = 0
         reply({ text: message }, (err) => {
-          console.log(err)
-          if (err) throw err
+          if (err) console.log(err)
         });
       break;
       case 0: //first step, the hello message
@@ -92,7 +91,7 @@ bot.on('message', (payload, reply) => {
         disk[payload.sender.id].step = 4
       }
       reply({ text: message }, (err) => {
-        if (err) throw err
+        if (err) console.log(err)
       });
       break;
       case 1://the step where we indentify the url
@@ -107,7 +106,7 @@ bot.on('message', (payload, reply) => {
             disk[payload.sender.id].try += 1
           }
           reply({ text: message }, (err) => {
-            if (err) throw err
+            if (err) console.log(err)
           });
         } else {
           testFeedUrl(arrayUrls[0], (xmlParsed, error) => {
@@ -119,7 +118,7 @@ bot.on('message', (payload, reply) => {
               disk[payload.sender.id].step = 2
             }
             reply({ text: message }, (err) => {
-              if (err) throw err
+              if (err) console.log(err)
             });
           })
         }
@@ -133,7 +132,7 @@ bot.on('message', (payload, reply) => {
         disk[payload.sender.id].step = 3
       }
       reply({ text: message }, (err) => {
-        if (err) throw err
+        if (err) console.log(err)
       });
       break;
       case 3:
@@ -145,7 +144,7 @@ bot.on('message', (payload, reply) => {
           disk[payload.sender.id].step = 4
         }
         reply({ text: message }, (err) => {
-          if (err) throw err
+          if (err) console.log(err)
         });
       break;
       case 4://Atendimento concluido
