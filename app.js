@@ -79,6 +79,7 @@ bot.on('message', (payload, reply) => {
         message = `Olá ${profile.first_name}! Você deseja enviar um feed para nosso catalogo? \n\n ${botSign}`;
         disk[payload.sender.id].step = 0
         reply({ text: message }, (err) => {
+          console.log(err)
           if (err) throw err
         });
       break;
