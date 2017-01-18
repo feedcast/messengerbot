@@ -5,34 +5,40 @@ const request = require('request');
 
 
 let bot = new Bot({
-  token: process.env.TOKEN,
-  verify: process.env.VERIFY,
-  app_secret: process.env.APP_SECRET
+  token: 'EAAaBbf0MiIIBALLvgZA5J7ZC0ZAdv5cOp5VSYHplKrKUbXraMmIgZBmyvJ1A4gGQRMQAZCZAgZCoGFJIaHNrU5nGptwJPKwhlp80ZAcA07an8SRsJW67s2CN6Gc6wEWaPu9RZAlXmKwGEgc98fdlEx9WtyWk9j6nhOvUquIzJBfhySAZDZD',//process.env.TOKEN,
+  verify: 'feedcastpodcast2017',//process.env.VERIFY,
+  app_secret: '3930ed5543d89864ec3d5d06a865a7e3'//process.env.APP_SECRET
 })
 
 let disk = [];
 
 
 function testFeedUrl(url, callback){
+  try{
   if(url.indexOf('http') === -1) url = `http://${url}`;
   request.get(url, function (error, response, body) {
-      if(error){
-        if(callback) callback(null, true, error);
-      }
       if (!error && response.statusCode == 200) {
           parseString(body, function (err, result) {
-              if(err && callback) callback(null, true, err);
-              var findChannel = function(obj){
-                if(typeof obj['channel'] !== 'undefined'){
-                  return obj['channel']
-                } else {
-                  return findChannel(obj[Object.keys(obj)[0]])
+              if(err) {
+                callback(null, true, err);
+              } else {
+                var findChannel = function(obj){
+                  if(typeof obj['channel'] !== 'undefined'){
+                    return obj['channel']
+                  } else {
+                    return findChannel(obj[Object.keys(obj)[0]])
+                  }
                 }
+                callback(findChannel(result));
               }
-              if(callback) callback(findChannel(result));
           });
+      } else {
+        callback(null, true, error);
       }
   });
+  } catch(e){
+    callback(null, true, e);
+  }
 }
 
 function findSome(arrayWords, stringText){
@@ -110,7 +116,7 @@ bot.on('message', (payload, reply) => {
           });
         } else {
           testFeedUrl(arrayUrls[0], (xmlParsed, error) => {
-            if(error || typeof xmlParsed !== 'object'){
+            if(error){
               message = `Encontramos um problema no seu feed. Deseja enviar outra url? \n\n ${botSign}`;
             } else {
               message = `Tem certeza que deseja adicionar ${xmlParsed[0].title[0]}? \n\n ${botSign}`;
@@ -125,7 +131,7 @@ bot.on('message', (payload, reply) => {
       case 2:
       if(findSome(['sim','yes','por favor', 'claro', 'sin', 'ok', 'beleza', 'blz', 'ta bom'],text)){
         message = `Muito obrigado por enviar a sua contribuição ao Feedcast! Seu feed será enviado para aprovação e em breve poderá ser adicionado ao nosso catalogo! \n\n ${botSign}`;
-        disk[payload.sender.id].step = 0
+        disk[payload.sender.id].step = -1
       } else {
         message = `Deseja adicionar outro feed? \n\n ${botSign}`;
         disk[payload.sender.id].step = 3
