@@ -1,0 +1,16 @@
+{
+  "name": "feedcast-chat-bot",
+  "version": "1.0.0",
+  "description": "A chat bot tool for feedcast clients",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "messenger-bot": "^2.4.0",
+    "request": "^2.79.0",
+    "xml2js": "^0.4.17"
+  }
+}
