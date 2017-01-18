@@ -153,5 +153,5 @@ bot.on('message', (payload, reply) => {
   })
 })
 
-http.createServer(bot.middleware()).listen(process.env || 3000)
-console.log(`Echo bot server running at port ${process.env || 3000}`)
+http.createServer(bot.middleware()).listen(process.env.PORT || 3000)
+console.log(`Echo bot server running at port ${process.env.PORT || 3000}`)
