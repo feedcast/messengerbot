@@ -148,6 +148,10 @@ bot.on('message', (payload, reply) => {
         });
       break;
       case 4://Atendimento concluido
+        disk[payload.sender.id].step = -1
+        reply({ text: message }, (err) => {
+          if (err) console.log(err)
+        });
       break;
     }
   })
