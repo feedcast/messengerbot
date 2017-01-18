@@ -110,8 +110,7 @@ bot.on('message', (payload, reply) => {
           });
         } else {
           testFeedUrl(arrayUrls[0], (xmlParsed, error) => {
-            if(error){
-              console.log(error, typeof error)
+            if(error || typeof xmlParsed !== 'object'){
               message = `Encontramos um problema no seu feed. Deseja enviar outra url? \n\n ${botSign}`;
             } else {
               message = `Tem certeza que deseja adicionar ${xmlParsed[0].title[0]}? \n\n ${botSign}`;
