@@ -5,9 +5,9 @@ const request = require('request');
 
 
 let bot = new Bot({
-  token: 'EAAaBbf0MiIIBALLvgZA5J7ZC0ZAdv5cOp5VSYHplKrKUbXraMmIgZBmyvJ1A4gGQRMQAZCZAgZCoGFJIaHNrU5nGptwJPKwhlp80ZAcA07an8SRsJW67s2CN6Gc6wEWaPu9RZAlXmKwGEgc98fdlEx9WtyWk9j6nhOvUquIzJBfhySAZDZD',//process.env.TOKEN,
-  verify: 'feedcastpodcast2017',//process.env.VERIFY,
-  app_secret: '3930ed5543d89864ec3d5d06a865a7e3'//process.env.APP_SECRET
+  token: process.env.TOKEN,
+  verify: process.env.VERIFY,
+  app_secret: process.env.APP_SECRET
 })
 
 let disk = [];

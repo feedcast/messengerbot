@@ -4,7 +4,7 @@
   "description": "A chat bot tool for feedcast clients",
   "main": "index.js",
   "scripts": {
-    "start": "npm install && node app.js",
+    "start": "npm install && node bot.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
