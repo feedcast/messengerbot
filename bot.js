@@ -74,7 +74,8 @@ bot.on('message', (payload, reply) => {
         gender: profile.gender,
         timezone: profile.timezone,
         step: -1,
-        try:0
+        try:0,
+        time: Date.now()
       }
     }
 
